@@ -8,7 +8,7 @@ const activeCardColour = Color(0xFF1D1E33);
 const inactiveCardColour = Color(0xFF111328);
 const bottomContainerColour = Color(0xFFEB1555);
 
-enum Gender {male, female}
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -19,6 +19,7 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColour = inactiveCardColour;
   Color femaleCardColour = inactiveCardColour;
 
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +36,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                      maleCardColour =  (maleCardColour == inactiveCardColour) ? activeCardColour : inactiveCardColour;
-                      femaleCardColour = inactiveCardColour;
+                        selectedGender = Gender.male;
                       });
                       print('male tapped');
                     },
@@ -45,7 +45,9 @@ class _InputPageState extends State<InputPage> {
                         icon: FontAwesomeIcons.mars,
                         iconText: 'Male',
                       ),
-                      colour: maleCardColour,
+                      colour: selectedGender == Gender.male
+                          ? activeCardColour
+                          : inactiveCardColour,
                     ),
                   ),
                 ),
@@ -53,8 +55,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                       femaleCardColour = (femaleCardColour == inactiveCardColour) ? activeCardColour : inactiveCardColour;
-                       maleCardColour = inactiveCardColour;
+                        selectedGender = Gender.female;
                       });
                     },
                     child: ReusableCard(
@@ -62,7 +63,9 @@ class _InputPageState extends State<InputPage> {
                         icon: FontAwesomeIcons.venus,
                         iconText: 'Female',
                       ),
-                      colour: femaleCardColour,
+                      colour: selectedGender == Gender.female
+                          ? activeCardColour
+                          : inactiveCardColour,
                     ),
                   ),
                 ),
