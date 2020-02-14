@@ -19,23 +19,6 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColour = inactiveCardColour;
   Color femaleCardColour = inactiveCardColour;
 
-  void updateColour(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColour == inactiveCardColour) {
-        maleCardColour = activeCardColour;
-        femaleCardColour = inactiveCardColour;
-      } else {
-        maleCardColour = inactiveCardColour;
-      }
-    } else {
-      if (femaleCardColour == inactiveCardColour) {
-        femaleCardColour = activeCardColour;
-        maleCardColour = inactiveCardColour;
-      } else {
-        femaleCardColour = inactiveCardColour;
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +35,8 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.male);
+                      maleCardColour =  (maleCardColour == inactiveCardColour) ? activeCardColour : inactiveCardColour;
+                      femaleCardColour = inactiveCardColour;
                       });
                       print('male tapped');
                     },
@@ -69,7 +53,8 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.female);
+                       femaleCardColour = (femaleCardColour == inactiveCardColour) ? activeCardColour : inactiveCardColour;
+                       maleCardColour = inactiveCardColour;
                       });
                     },
                     child: ReusableCard(
