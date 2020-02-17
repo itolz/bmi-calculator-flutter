@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-
-const bottomContainerHeight = 80.0;
-const activeCardColour = Color(0xFF1D1E33);
-const inactiveCardColour = Color(0xFF111328);
-const bottomContainerColour = Color(0xFFEB1555);
+import 'constants.dart';
 
 enum Gender { male, female }
 
@@ -16,8 +12,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = inactiveCardColour;
-  Color femaleCardColour = inactiveCardColour;
+  Color maleCardColour = kInactiveCardColour;
+  Color femaleCardColour = kInactiveCardColour;
 
   Gender selectedGender;
 
@@ -28,6 +24,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -39,8 +36,8 @@ class _InputPageState extends State<InputPage> {
                       iconText: 'Male',
                     ),
                     colour: selectedGender == Gender.male
-                        ? activeCardColour
-                        : inactiveCardColour,
+                        ? kActiveCardColour
+                        : kInactiveCardColour,
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
@@ -55,8 +52,8 @@ class _InputPageState extends State<InputPage> {
                       iconText: 'Female',
                     ),
                     colour: selectedGender == Gender.female
-                        ? activeCardColour
-                        : inactiveCardColour,
+                        ? kActiveCardColour
+                        : kInactiveCardColour,
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
@@ -69,8 +66,20 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              // colour: Colors.blue,
-              colour: activeCardColour,
+              colour: kActiveCardColour,
+              cardChild: Column(
+                children: <Widget>[
+                  Text('HEIGHT', style: kLabelTextStyle),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '180',
+                        style: kLabelNumberStyle,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -78,22 +87,22 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColour,
+                    colour: kActiveCardColour,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColour,
+                    colour: kActiveCardColour,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColour,
+            color: kBottomContainerColour,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
