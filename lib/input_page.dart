@@ -16,7 +16,7 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColour = kInactiveCardColour;
 
   Gender selectedGender;
-  int height = 80;
+  int height = 150;
   int weight = 60;
   int age = 19; 
 
@@ -102,8 +102,8 @@ class _InputPageState extends State<InputPage> {
                     ),
                     child: Slider(
                       value: height.toDouble(),
-                      min: 0,
-                      max: 100,
+                      min:80,
+                      max: 220,
                       onChanged: (double newValue) {
                         setState(() {
                           height = newValue.round();
